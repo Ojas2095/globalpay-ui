@@ -1,36 +1,32 @@
 "use client";
-import BiometricPrompt from "@/components/BiometricPrompt";
+import React from "react";
 import { motion } from "framer-motion";
-import { Fingerprint } from "lucide-react";
+import BiometricPrompt from "@/components/BiometricPrompt";
 
 export default function KioskPage() {
   return (
     <motion.main
-      className="flex flex-col items-center justify-center h-screen bg-white dark:bg-black text-gray-900 dark:text-white"
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
+      className="min-h-screen px-6 py-12 text-gray-800 dark:text-gray-200 bg-gradient-to-b from-[#f5f0fa] to-[#e9dcf5] dark:from-[#0a0a0a] dark:to-[#1f1f1f] flex flex-col items-center"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
     >
       <motion.h1
-        className="text-4xl font-bold mb-10 flex items-center gap-2 text-green-600 dark:text-green-400"
-        initial={{ opacity: 0, y: -20 }}
+        className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-6 text-center"
+        initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
       >
-        <Fingerprint className="w-8 h-8" /> GlobalPay Kiosk
+        Kiosk Biometric Access
       </motion.h1>
 
-      <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        className="bg-green-600 dark:bg-green-500 text-white text-2xl px-8 py-4 rounded-xl shadow-lg"
+      <motion.div
+        initial={{ scale: 0.95, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ delay: 0.4 }}
       >
-        Scan QR to Pay
-      </motion.button>
-
-      <div className="mt-10">
         <BiometricPrompt animatePulse />
-      </div>
+      </motion.div>
     </motion.main>
   );
 }

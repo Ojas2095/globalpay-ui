@@ -1,17 +1,18 @@
-"use client";
-import { motion } from "framer-motion";
+import React from "react";
+import { Wallet } from "lucide-react";
 
-export default function WalletCard({ balance = "₹0", name = "User" }) {
+export default function WalletCard({ balance }) {
   return (
-    <motion.div
-      className="mx-auto max-w-md bg-gradient-to-br from-purple-400 to-purple-200 text-white p-8 rounded-xl shadow-xl"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-    >
-      <div className="text-lg">Wallet Balance</div>
-      <div className="text-4xl font-bold mt-2">{balance}</div>
-      <div className="mt-4 text-sm">Holder: {name}</div>
-    </motion.div>
+    <div className="bg-white dark:bg-[#1b1b1b] p-6 rounded-xl shadow border border-gray-200 dark:border-gray-700 w-full max-w-md mx-auto">
+      <div className="flex items-center gap-4 mb-2">
+        <Wallet className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+        <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
+          Wallet Balance
+        </h3>
+      </div>
+      <p className="text-3xl font-bold text-purple-600 dark:text-purple-400">
+        ₹ {balance?.toFixed(2) || "0.00"}
+      </p>
+    </div>
   );
 }

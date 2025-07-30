@@ -1,30 +1,31 @@
-"use client";
+import React from "react";
 import { motion } from "framer-motion";
 
-export default function TransactionHistory({ transactions = [], animateItems = false, itemVariant }) {
+export default function TransactionHistory({ transactions, itemVariant, animateItems }) {
   return (
-    <div className="mx-auto max-w-lg mt-4 space-y-4">
-      {transactions.length === 0 ? (
-        <p className="text-center text-gray-500">No transactions found.</p>
-      ) : (
-        <motion.ul
-          initial={animateItems ? "hidden" : false}
-          animate={animateItems ? "show" : false}
-          variants={animateItems ? { show: { transition: { staggerChildren: 0.1 } } } : {}}
-          className="space-y-3"
-        >
-          {transactions.map((tx, idx) => (
-            <motion.li
-              key={idx}
-              variants={itemVariant}
-              className="flex justify-between p-4 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-sm"
-            >
-              <span>{tx.description || "Payment"}</span>
-              <span className="font-semibold text-green-600 dark:text-green-400">₹{tx.amount}</span>
-            </motion.li>
-          ))}
-        </motion.ul>
-      )}
+    <div className="mt-6">
+      <h2 className="text-xl font-semibold mb-4 text-purple-600 dark:text-purple-400 text-center">
+        Transaction History
+      </h2>
+      <ul className="space-y-4">
+        {transactions.map((txn, i) => (
+          <motion.li
+            key={i}
+            className="p-4 rounded-xl bg-white dark:bg-[#1b1b1b] shadow border border-gray-200 dark:border-gray-700"
+            variants={itemVariant}
+            initial="hidden"
+            animate={animateItems ? "show" : "hidden"}
+          >
+            <div className="flex justify-between">
+              <span className="text-gray-800 dark:text-white">{txn.title}</span>
+              <span className="text-purple-600 dark:text-purple-400 font-semibold">
+                ₹ {txn.amount}
+              </span>
+            </div>
+            <div className="text-sm text-gray-500 dark:text-gray-400">{txn.date}</div>
+          </motion.li>
+        ))}
+      </ul>
     </div>
   );
 }
